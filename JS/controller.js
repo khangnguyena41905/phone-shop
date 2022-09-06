@@ -1,10 +1,10 @@
 let kiemTraSoLuong = (cart, id) => {
-  let quality = 1;
+  let quality = 0;
   if (cart.length != 0) {
     let index = 0;
     for (; index < cart.length; index++) {
       if (cart[index].id == id) {
-        quality = cart[index].quality + 1;
+        quality = cart[index].quality;
         break;
       }
     }
@@ -12,11 +12,12 @@ let kiemTraSoLuong = (cart, id) => {
   return quality;
 };
 let thayDoiSoLuong = (cart, cartItem) => {
-  if (cartItem.quality == 1) {
+  if (cartItem.quality == 0) {
     cart.push(cartItem);
+    cartItem.quality = 1;
   } else {
     let index = cart.map((e) => e.id).indexOf(cartItem.id);
-    cart[index].quality = cartItem.quality;
+    cart[index].quality = cartItem.quality + 1;
   }
 };
 let totalItemCart = (cart) => {
@@ -25,11 +26,4 @@ let totalItemCart = (cart) => {
     totalItem += item.quality;
   });
   return totalItem;
-};
-renderCartNumber = (number, className) => {
-  let cartNumberEl = document.getElementsByClassName(className);
-  let index = 0;
-  for (; index < cartNumberEl.length; index++) {
-    cartNumberEl[index].innerText = number;
-  }
 };

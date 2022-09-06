@@ -35,6 +35,57 @@
     <link rel="stylesheet" href="./CSS/main.css" />
   </head>
   <body>
+    <!--Open Cart Modal -->
+    <div
+      class="modal fade"
+      id="cartModel"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Cart</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="cart_model" class="modal-body">
+            <table style="width: 100%">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Sản phẩm</th>
+                  <th>Hình ảnh</th>
+                  <th>Số lượng</th>
+                  <th>Giá</th>
+                </tr>
+              </thead>
+              <tbody id="tBody_cart_model" style="text-align: left"></tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <div id="tongTienTrongGio"></div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Thanh toán</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main -->
     <div id="MainContent">
       <div id="loading"></div>
       <div class="hs_wapper">
@@ -45,7 +96,12 @@
               <span class="shop_name">NK SHOP</span>
             </div>
             <div class="nav_right">
-              <span class="cart_logo"><i class="fa fa-shopping-bag"></i></span>
+              <span
+                class="cart_logo"
+                data-toggle="modal"
+                data-target="#cartModel"
+                ><i class="fa fa-shopping-bag"></i
+              ></span>
               <span id="cart_number" class="cart_number"></span>
             </div>
           </nav>
@@ -98,7 +154,7 @@
                 </div>
               </div>
               <div class="col-md my-4">
-                <a href="#">
+                <a href="#" data-toggle="modal" data-target="#cartModel">
                   <div class="my_cart">
                     <div class="my_cart_content">
                       <span class="cart_icon">
