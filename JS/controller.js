@@ -27,3 +27,14 @@ let totalItemCart = (cart) => {
   });
   return totalItem;
 };
+let tinhTien = (price, quality) => {
+  let totalPrice = 0;
+  let index = price.indexOf("$");
+  if (index != -1) {
+    let priceConverted = price.replace(/\D/g, "");
+    totalPrice = priceConverted * 23000 * quality;
+  } else {
+    totalPrice = price * 1 * quality;
+  }
+  return totalPrice;
+};

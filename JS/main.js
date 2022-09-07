@@ -1,6 +1,11 @@
 let ProductList = [];
 let BASE_URL = "https://62f8b755e0564480352bf411.mockapi.io";
 let cart = [];
+let cartLocalStorage = localStorage.getItem("CART");
+let saveLocalStorage = () => {
+  let cartJson = JSON.stringify(cart);
+  localStorage.setItem("CART", cartJson);
+};
 let renderProductList = (ProductList) => {
   let contentHTML = "";
   ProductList.forEach((element) => {
@@ -38,6 +43,7 @@ let renderCartNumber = (number, className) => {
 let renderCart = (cart) => {
   let content = "";
   let contentHTML = "";
+  let totalPrice = 0;
   cart.forEach((item, index) => {
     content = `
     <tr>
@@ -53,23 +59,16 @@ let renderCart = (cart) => {
       item.id
     }')" type="button" class="btn btn-dark btn-sm">></button>
     </td>
-    <td>${item.price}</td>
+    <td>${tinhTien(item.price, item.quality)}</td>
     </tr>
     `;
     contentHTML += content;
+    totalPrice += tinhTien(item.price, item.quality);
   });
   document.getElementById("tBody_cart_model").innerHTML = contentHTML;
+  document.getElementById("tongTienTrongGio").innerText = totalPrice;
+  saveLocalStorage();
 };
-axios({
-  url: `${BASE_URL}/Products`,
-  method: "GET",
-})
-  .then((res) => {
-    ProductList = res.data;
-    console.log("ProductList: ", ProductList);
-    renderProductList(ProductList);
-  })
-  .catch((err) => {});
 
 let addCart = (id) => {
   axios({
@@ -81,7 +80,6 @@ let addCart = (id) => {
       let quality = kiemTraSoLuong(cart, id);
       let cartItem = { ...res.data, quality };
       thayDoiSoLuong(cart, cartItem);
-      console.log("cart: ", cart);
       let totalQuality = totalItemCart(cart);
       renderCartNumber(totalQuality, "cart_number");
       renderCart(cart);
@@ -110,3 +108,20 @@ let buttonGiam = (id) => {
   renderCartNumber(totalQuality, "cart_number");
   renderCart(cart);
 };
+
+// render web
+axios({
+  url: `${BASE_URL}/Products`,
+  method: "GET",
+})
+  .then((res) => {
+    ProductList = res.data;
+    renderProductList(ProductList);
+    if (JSON.parse(cartLocalStorage)) {
+      cart = JSON.parse(cartLocalStorage);
+      let totalQuality = totalItemCart(cart);
+      renderCartNumber(totalQuality, "cart_number");
+      renderCart(cart);
+    }
+  })
+  .catch((err) => {});
