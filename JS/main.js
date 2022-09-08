@@ -60,6 +60,11 @@ let renderCart = (cart) => {
     }')" type="button" class="btn btn-dark btn-sm">></button>
     </td>
     <td>${tinhTien(item.price, item.quality)}</td>
+    <td>
+    <button onclick="buttonXoa('${
+      item.id
+    }')" type="button" class="btn btn-outline-light text-dark btn-sm"><i class="fa fa-trash-alt"></i></button>
+    </td>
     </tr>
     `;
     contentHTML += content;
@@ -108,7 +113,14 @@ let buttonGiam = (id) => {
   renderCartNumber(totalQuality, "cart_number");
   renderCart(cart);
 };
-
+let buttonXoa = (id) => {
+  let index = cart.map((e) => e.id).indexOf(id);
+  cart.splice(index, 1);
+  let totalQuality = totalItemCart(cart);
+  renderCartNumber(totalQuality, "cart_number");
+  renderCart(cart);
+  saveLocalStorage();
+};
 // render web
 axios({
   url: `${BASE_URL}/Products`,
