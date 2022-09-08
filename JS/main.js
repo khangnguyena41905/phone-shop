@@ -139,6 +139,14 @@ axios({
   })
   .catch((err) => {});
 
+let thanhToan = () => {
+  cart = [];
+  let totalQuality = totalItemCart(cart);
+  renderCartNumber(totalQuality, "cart_number");
+  renderCart(cart);
+  saveLocalStorage();
+};
+
 // menu filter
 let submitFilter = () => {
   let checkedValue = null;
