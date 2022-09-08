@@ -115,11 +115,13 @@
                 </div>
               </div>
               <div class="col-md my-4">
-                <div class="menu">
+                <div id="menu" class="menu">
                   <nav>
                     <ul>
                       <li>
-                        <span>Home</span>
+                        <a href="#">
+                          <span>Home</span>
+                        </a>
                       </li>
                       <li>
                         <a href="#">
@@ -148,6 +150,46 @@
                           <span class="menu_icon_dropdown"
                             ><i class="fa fa-angle-right"></i></span
                         ></a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-toggle="collapse"
+                          data-target="#filter_content"
+                        >
+                          <span>Filter</span>
+                          <span class="menu_icon_dropdown"
+                            ><i class="fa fa-angle-right"></i></span
+                        ></a>
+                        <div id="filter_content" class="collapse">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input
+                                type="checkbox"
+                                class="form-check-input"
+                                value="Iphone"
+                              />Iphone
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input
+                                type="checkbox"
+                                class="form-check-input"
+                                value="Samsung"
+                              />Samsung
+                            </label>
+                          </div>
+                          <div class="text-right">
+                            <button
+                              type="button"
+                              class="btn btn-secondary btn-sm"
+                              onclick="submitFilter()"
+                            >
+                              filter
+                            </button>
+                          </div>
+                        </div>
                       </li>
                     </ul>
                   </nav>

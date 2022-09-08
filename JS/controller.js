@@ -38,3 +38,18 @@ let tinhTien = (price, quality) => {
   }
   return totalPrice;
 };
+let filterProduct = (ProductList, listCheckedValue) => {
+  let filterProductList = [];
+  if (listCheckedValue.length == 0) {
+    return ProductList;
+  }
+  ProductList.forEach((item) => {
+    for (let index = 0; index < listCheckedValue.length; index++) {
+      if (item.type == listCheckedValue[index]) {
+        filterProductList.push(item);
+        break;
+      }
+    }
+  });
+  return filterProductList;
+};

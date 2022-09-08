@@ -116,6 +116,7 @@ axios({
 })
   .then((res) => {
     ProductList = res.data;
+    console.log("ProductList: ", ProductList);
     renderProductList(ProductList);
     if (JSON.parse(cartLocalStorage)) {
       cart = JSON.parse(cartLocalStorage);
@@ -125,3 +126,19 @@ axios({
     }
   })
   .catch((err) => {});
+
+// menu filter
+let submitFilter = () => {
+  let checkedValue = null;
+  let listCheckedValue = [];
+  let inputElements = document.getElementsByClassName("form-check-input");
+  for (let i = 0; inputElements[i]; ++i) {
+    if (inputElements[i].checked) {
+      checkedValue = inputElements[i].value;
+      listCheckedValue.push(checkedValue);
+    }
+  }
+  console.log("listCheckedValue: ", listCheckedValue);
+  let filterProductList = filterProduct(ProductList, listCheckedValue);
+  renderProductList(filterProductList);
+};
