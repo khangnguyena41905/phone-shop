@@ -1,6 +1,12 @@
 let ProductList = [];
 let BASE_URL = "https://62f8b755e0564480352bf411.mockapi.io";
 let cart = [];
+let batLoading = () => {
+  document.getElementById("loading").style.display = "block";
+};
+let tatLoading = () => {
+  document.getElementById("loading").style.display = "none";
+};
 let cartLocalStorage = localStorage.getItem("CART");
 let saveLocalStorage = () => {
   let cartJson = JSON.stringify(cart);
@@ -76,6 +82,7 @@ let renderCart = (cart) => {
 };
 
 let addCart = (id) => {
+  batLoading();
   axios({
     url: `${BASE_URL}/Products/${id}`,
     method: "GET",
@@ -88,9 +95,10 @@ let addCart = (id) => {
       let totalQuality = totalItemCart(cart);
       renderCartNumber(totalQuality, "cart_number");
       renderCart(cart);
+      tatLoading();
     })
     .catch((err) => {
-      console.log("err: ", err);
+      tatLoading();
     });
 };
 let buttonTang = (id) => {
@@ -122,22 +130,28 @@ let buttonXoa = (id) => {
   saveLocalStorage();
 };
 // render web
-axios({
-  url: `${BASE_URL}/Products`,
-  method: "GET",
-})
-  .then((res) => {
-    ProductList = res.data;
-    console.log("ProductList: ", ProductList);
-    renderProductList(ProductList);
-    if (JSON.parse(cartLocalStorage)) {
-      cart = JSON.parse(cartLocalStorage);
-      let totalQuality = totalItemCart(cart);
-      renderCartNumber(totalQuality, "cart_number");
-      renderCart(cart);
-    }
+let renderWeb = () => {
+  batLoading();
+  axios({
+    url: `${BASE_URL}/Products`,
+    method: "GET",
   })
-  .catch((err) => {});
+    .then((res) => {
+      ProductList = res.data;
+      console.log("ProductList: ", ProductList);
+      renderProductList(ProductList);
+      if (JSON.parse(cartLocalStorage)) {
+        cart = JSON.parse(cartLocalStorage);
+        let totalQuality = totalItemCart(cart);
+        renderCartNumber(totalQuality, "cart_number");
+        renderCart(cart);
+        tatLoading();
+      }
+    })
+    .catch((err) => {
+      tatLoading();
+    });
+};
 
 let thanhToan = () => {
   cart = [];
