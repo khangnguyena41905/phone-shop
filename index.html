@@ -103,6 +103,115 @@
         </div>
       </div>
     </div>
+
+    <!-- Model phone menu -->
+    <div
+      class="modal fade"
+      id="modelPhoneMenu"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelPhoneMenuTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modelPhoneMenuTitle">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="menu" class="menu">
+              <nav>
+                <ul>
+                  <li>
+                    <a href="#">
+                      <span>Home</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span>Product</span>
+                      <span class="menu_icon_dropdown"
+                        ><i class="fa fa-angle-right"></i></span
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span>Page</span>
+                      <span class="menu_icon_dropdown"
+                        ><i class="fa fa-angle-right"></i></span
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span>Log</span>
+                      <span class="menu_icon_dropdown"
+                        ><i class="fa fa-angle-right"></i></span
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span>Sale</span>
+                      <span class="menu_icon_dropdown"
+                        ><i class="fa fa-angle-right"></i></span
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-toggle="collapse"
+                      data-target="#filter_content"
+                    >
+                      <span>Filter</span>
+                      <span class="menu_icon_dropdown"
+                        ><i class="fa fa-angle-right"></i></span
+                    ></a>
+                    <div id="filter_content" class="collapse">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            value="Iphone"
+                          />Iphone
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            value="Samsung"
+                          />Samsung
+                        </label>
+                      </div>
+                      <div class="text-right">
+                        <button
+                          type="button"
+                          class="btn btn-secondary btn-sm"
+                          data-dismiss="modal"
+                          onclick="submitFilter()"
+                        >
+                          filter
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Main -->
     <div id="MainContent">
       <div id="loading"></div>
@@ -110,7 +219,13 @@
         <div class="shopify-phone-section">
           <nav>
             <div class="nav_left">
-              <span class="logo_menu"><i class="fa fa-bars"></i></span>
+              <span
+                type="button"
+                class="logo_menu"
+                data-toggle="modal"
+                data-target="#modelPhoneMenu"
+                ><i class="fa fa-bars"></i
+              ></span>
               <span class="shop_name">NK SHOP</span>
             </div>
             <div class="nav_right">
