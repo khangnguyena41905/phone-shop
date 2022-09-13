@@ -145,14 +145,14 @@ let renderWeb = () => {
         let totalQuality = totalItemCart(cart);
         renderCartNumber(totalQuality, "cart_number");
         renderCart(cart);
-        tatLoading();
       }
+      tatLoading();
     })
     .catch((err) => {
       tatLoading();
     });
 };
-
+renderWeb();
 let thanhToan = () => {
   cart = [];
   let totalQuality = totalItemCart(cart);
