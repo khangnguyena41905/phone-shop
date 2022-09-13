@@ -1,4 +1,5 @@
 let regexImage = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+let regexNumber = /^\d+$/;
 let validator = {
   checkBlank: (checkBlank = (input, id) => {
     if (input === "") {
@@ -19,15 +20,16 @@ let validator = {
     }
   }),
   checkPrice: (checkPrice = (input, id) => {
-    if (input < 1000) {
-      document.getElementById(id).innerHTML = "Giá tiền phải từ 1000 trở lên";
-      return false;
-    } else {
+    if (regexNumber.test(input) && input * 1 >= 1000) {
       return true;
+    } else {
+      document.getElementById(id).innerHTML =
+        "Giá trị nhập phải là số và lớn hơn hoặc bằng 1000";
+      return false;
     }
   }),
   checkImage: (checkImage = (input, id) => {
-    if (input.match(regexImage)) {
+    if (regexImage.test(input)) {
       return true;
     } else {
       document.getElementById(id).innerHTML =
@@ -37,10 +39,10 @@ let validator = {
   }),
 };
 let Validator = (
+  _name,
   _type,
   _price,
   _img,
-  _name,
   _screen,
   _front_camera,
   _back_camera,

@@ -42,11 +42,13 @@ function findItem(id) {
   });
 }
 function deleteItem(id) {
+  turnOnLoading();
   axios({
     url: `${BASE_URL}/Products/${id}`,
     method: "delete",
   })
     .then(function () {
+      turnOffLoading();
       getDataFromAPI();
     })
     .catch(function (error) {
