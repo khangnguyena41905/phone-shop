@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Chakra Petch", sans-serif;
+}
+#body {
+  background-color: rgba(0, 0, 0, 0.879);
+}
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 2;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+}
+.w3-border {
+  border: 0 !important;
+}
+.w3-container,
+.w3-panel {
+  padding: 0;
+}
+.w3-black {
+  opacity: 0.9;
+  font-weight: bold;
+}
+.bg-light {
+  background-color: #262626 !important;
+}
+nav * {
+  color: white !important;
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+.form-inline button {
+  border-color: rgb(244, 67, 54);
+}
+.form-inline button:hover {
+  background-color: rgb(244, 67, 54);
+}
+#product {
+  font-size: 13px;
+}
+#Paris {
+  color: wheat;
+}
+#user {
+  color: wheat;
+}
+.table-dark {
+  background-color: #273136 !important;
+  opacity: 0.9;
+}
+.table-dark thead {
+  color: rgb(244, 67, 54);
+}
+.navbar-nav {
+  opacity: 0.8;
+}
+#delete_btn {
+  background-color: transparent;
+  color: violet;
+  border-width: 0;
+  margin-right: 15px;
+}
+#edit_btn {
+  background-color: transparent;
+  color: greenyellow;
+  border-width: 0;
+}
