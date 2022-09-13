@@ -1,0 +1,48 @@
+* Sau khi thực hiện các chức năng:
+1. Lấy data từ API
+2. Render
+3. Save LocalStorage
+
+*Các chức năng:
+1. Thêm dùng Post: phải có data: sp là đối tượng được thêm
+themSP = function (sp) {
+    //POST: Thêm mới dữ liệu
+    //data: dữ liệu cần thêm vào Cơ sở dữ liệu
+    var promise = axios({
+      method: "post",
+      url: "https://5dcda609d795470014e4d2b9.mockapi.io/api/Products",
+      data: sp,
+    });
+    return promise;
+  };
+
+2. Cập nhật dùng Put: phải có id của đối tượng, và data mới của đối tượng
+capNhatSanPham = function (id, sp) {
+    //PUT: cập nhật data của 1 sản phẩm dựa vào id
+    var promise = axios({
+      method: "put",
+      url: `https://5dcda609d795470014e4d2b9.mockapi.io/api/Products/${id}`,
+      data: sp,
+    });
+    return promise;
+  };
+
+3. Xóa dùng delete: có id
+xoaSanPham = function (id) {
+    //DELETE: xóa data dựa vào id
+    var promise = axios({
+      method: "delete",
+      url: `https://5dcda609d795470014e4d2b9.mockapi.io/api/Products/${id}`,
+    });
+    return promise;
+  };
+
+4. Xem 1 đối tượng cụ thể: dùng GET: có id
+xemSanPham = function (id) {
+    //GET: lấy data cua 1 sản phẩm dựa vào id
+    var promise = axios({
+      method: "get",
+      url: `https://5dcda609d795470014e4d2b9.mockapi.io/api/Products/${id}`,
+    });
+    return promise;
+  };
