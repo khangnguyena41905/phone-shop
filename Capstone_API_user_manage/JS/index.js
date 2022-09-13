@@ -5,19 +5,19 @@ getDataFromAPI();
 function updateProduct() {
   returnAlertBlank();
   var _name = tenSP.value;
+  var _type = loaiSanPham.value;
   var _price = giaSP.value;
   var _img = hinhSP.value;
-  var _desc = moTa.value;
   var _screen = manHinh.value;
   var _front_camera = cameraTruoc.value;
   var _back_camera = cameraSau.value;
-  var _type = loaiSanPham.value;
+  var _desc = moTa.value;
   if (
     Validator(
+      _name,
       _type,
       _price,
       _img,
-      _name,
       _screen,
       _front_camera,
       _back_camera,
@@ -26,15 +26,15 @@ function updateProduct() {
   ) {
     return;
   }
-  var product = new Product(
+  let product = new Product(
     _name,
+    _type,
     _price,
-    _screen,
-    _back_camera,
-    _front_camera,
     _img,
-    _desc,
-    _type
+    _screen,
+    _front_camera,
+    _back_camera,
+    _desc
   );
   turnOnLoading(); //loading
   axios({
@@ -54,19 +54,19 @@ function updateProduct() {
 function addProduct() {
   returnAlertBlank();
   var _name = tenSP.value;
+  var _type = loaiSanPham.value;
   var _price = giaSP.value;
   var _img = hinhSP.value;
   var _desc = moTa.value;
   var _screen = manHinh.value;
   var _front_camera = cameraTruoc.value;
   var _back_camera = cameraSau.value;
-  var _type = loaiSanPham.value;
   if (
     Validator(
+      _name,
       _type,
       _price,
       _img,
-      _name,
       _screen,
       _front_camera,
       _back_camera,
@@ -75,13 +75,14 @@ function addProduct() {
   ) {
     return;
   }
-  var product = new Product(
+  let product = new Product(
     _name,
+    _type,
     _price,
-    _screen,
-    _back_camera,
-    _front_camera,
     _img,
+    _screen,
+    _front_camera,
+    _back_camera,
     _desc
   );
   turnOnLoading(); //loading
