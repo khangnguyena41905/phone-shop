@@ -17,6 +17,7 @@ let renderProductList = (ProductList) => {
   ProductList.forEach((element) => {
     let content = `<div class="item col-md-3 col-6">
     <div onclick="showProductInfo(
+        '${element.id}',
         '${element.name}',
         '${element.price}',
         '${element.screen}',
@@ -41,7 +42,7 @@ let renderProductList = (ProductList) => {
         </div>
         <div class="icon">
           <button><i class="fa fa-heart"></i></button>
-          <button onclick="addCart(${element.id})" ><i class="fa fa-shopping-bag"></i></button>
+          <button><i class="fa fa-shopping-bag"></i></button>
         </div>
       </div>
     </div>
@@ -50,32 +51,7 @@ let renderProductList = (ProductList) => {
   });
   document.getElementById("list_item").innerHTML = contentHTML;
 };
-let showProductInfo = (
-  name,
-  price,
-  screen,
-  backCamera,
-  frontCamera,
-  img,
-  desc
-) => {
-  let content = `
- <div class="container_info">
-    <div class="img_info">
-        <img src="${img}" alt="" />
-    </div>
-    <div class="content_info">
-        <p>Sản phẩm: ${name}</p>
-        <p>Giá: ${price}</p>
-        <p>Màn hình: ${screen}</p>
-        <p>Camera trước: ${frontCamera}</p>
-        <p>Camera sau: ${backCamera}</p>
-        <p>Mô tả: ${desc}</p>
-    </div>
-  </div>
- `;
-  document.getElementById("phone_info").innerHTML = content;
-};
+
 let renderCartNumber = (number, className) => {
   let cartNumberEl = document.getElementsByClassName(className);
   let index = 0;
@@ -212,4 +188,51 @@ let submitFilter = () => {
   console.log("listCheckedValue: ", listCheckedValue);
   let filterProductList = filterProduct(ProductList, listCheckedValue);
   renderProductList(filterProductList);
+};
+
+let showProductInfo = (
+  id,
+  name,
+  price,
+  screen,
+  backCamera,
+  frontCamera,
+  img,
+  desc
+) => {
+  let content = `
+ <div class="container_info">
+    <div class="img_info">
+        <img src="${img}" alt="" />
+    </div>
+    <div class="content_info">
+        <p>Sản phẩm: ${name}</p>
+        <p>Giá: ${price}</p>
+        <p>Màn hình: ${screen}</p>
+        <p>Camera trước: ${frontCamera}</p>
+        <p>Camera sau: ${backCamera}</p>
+        <p>Mô tả: ${desc}</p>
+    </div>
+  </div>
+ `;
+  let footContent = `
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+          onclick="addCart('${id}')"
+          >
+          <i class="fa fa-cart-plus"></i>
+          </button>           
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            Close
+          </button>       
+ `;
+  document.getElementById("phone_info").innerHTML = content;
+  document.getElementById("model-footer-phone-screen").innerHTML = footContent;
 };
