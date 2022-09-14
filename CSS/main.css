@@ -69,6 +69,15 @@
   }
 }
 /* end loading */
+
+/*start model phone */
+#modelPhoneInfo .img_info img {
+  width: 70%;
+  left: 0;
+  margin-bottom: 2rem;
+}
+/*end model phone */
+
 .header_layout a {
   text-decoration: none;
   color: #000;

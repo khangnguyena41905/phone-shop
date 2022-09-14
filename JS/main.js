@@ -16,7 +16,18 @@ let renderProductList = (ProductList) => {
   let contentHTML = "";
   ProductList.forEach((element) => {
     let content = `<div class="item col-md-3 col-6">
-    <div class="item_frame">
+    <div onclick="showProductInfo(
+        '${element.name}',
+        '${element.price}',
+        '${element.screen}',
+        '${element.frontCamera}',
+        '${element.backCamera}',
+        '${element.img}',
+        '${element.desc}')" 
+        type="button"  
+        class="item_frame" 
+        data-toggle="modal" 
+        data-target="#modelPhoneInfo">  
       <div class="item_img">
         <img
           src="${element.img}"
@@ -29,15 +40,41 @@ let renderProductList = (ProductList) => {
           <p>${element.price}</p>
         </div>
         <div class="icon">
-        <button><i class="fa fa-heart"></i></button>
-        <button onclick="addCart(${element.id})" ><i class="fa fa-shopping-bag"></i></button>
-      </div>
+          <button><i class="fa fa-heart"></i></button>
+          <button onclick="addCart(${element.id})" ><i class="fa fa-shopping-bag"></i></button>
+        </div>
       </div>
     </div>
   </div>`;
     contentHTML += content;
   });
   document.getElementById("list_item").innerHTML = contentHTML;
+};
+let showProductInfo = (
+  name,
+  price,
+  screen,
+  backCamera,
+  frontCamera,
+  img,
+  desc
+) => {
+  let content = `
+ <div class="container_info">
+    <div class="img_info">
+        <img src="${img}" alt="" />
+    </div>
+    <div class="content_info">
+        <p>Sản phẩm: ${name}</p>
+        <p>Giá: ${price}</p>
+        <p>Màn hình: ${screen}</p>
+        <p>Camera trước: ${frontCamera}</p>
+        <p>Camera sau: ${backCamera}</p>
+        <p>Mô tả: ${desc}</p>
+    </div>
+  </div>
+ `;
+  document.getElementById("phone_info").innerHTML = content;
 };
 let renderCartNumber = (number, className) => {
   let cartNumberEl = document.getElementsByClassName(className);
